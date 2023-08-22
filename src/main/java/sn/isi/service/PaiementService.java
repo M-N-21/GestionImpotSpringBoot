@@ -69,7 +69,7 @@ public class PaiementService {
 				return paiementMapper.toPaiementDto(iPaiementRepository.save(paiementMapper.toPaiement(paiementDto)));
 			}else {
 				try {
-					throw new EntityNotFoundException(messageSource.getMessage("paiement.errormontantsupperieurpaiement", new Object[] {p.getMontantDeclaration()},
+					throw new Exception(messageSource.getMessage("paiement.errormontantsupperieurpaiement", new Object[] {p.getMontantDeclaration()},
 					        Locale.getDefault()));
 //					throw new LogiquePaiement(messageSource.getMessage("paiement.errormontantsupperieurpaiement", new Object[] {p.getMontantDeclaration()},
 //					        Locale.getDefault()),HttpStatus.CONFLICT);
