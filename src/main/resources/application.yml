@@ -22,5 +22,5 @@ spring:
 
 info:
   application:
-    name: admin-app
+    name: GestionImpo
     version: '@project.version@'
