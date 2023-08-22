@@ -32,7 +32,7 @@ Ce package contient des classes personnalisées pour la gestion des exceptions.
 
 ### `sn.isi.service`
 
-Ce package contient des services pour chaque entité qui gèrent les opérations CRUD associées.
+Ce package contient des services pour chaque entité qui gèrent les opérations CRUD et d'autres plus personnalisés associées.
 
 ### `sn.isi.config`
 
