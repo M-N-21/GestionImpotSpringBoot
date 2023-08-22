@@ -55,6 +55,15 @@ Ce package contient la classe de base pour le démarrage de l'application Spring
 - Les classes de configuration dans le package `sn.isi.config` sont annotées avec `@Configuration`.
 - Les classes de gestion des exceptions dans le package `sn.isi.exception` peuvent utiliser des annotations telles que `@ControllerAdvice` pour gérer les exceptions globalement.
 
+## Exemple de Capture d'Écran
+
+![image](src/main/resources/captures/capture1.png)
+
+Remplacez `Texte alternatif pour l'image` par une description courte de l'image (c'est utile pour l'accessibilité) et `chemin/vers/votre/image.png` par le chemin relatif depuis votre fichier README.md vers l'image. Par exemple, si votre image est dans le dossier "captures" à la racine de votre projet et s'appelle "capture.png", vous pouvez utiliser :
+
+![Capture d'écran de mon projet](captures/capture.png)
+
+
 Assurez-vous que votre projet est configuré correctement avec Spring Boot pour que ces annotations fonctionnent comme prévu.
 
 N'hésitez pas à explorer chaque package pour plus de détails sur la structure de l'application.
