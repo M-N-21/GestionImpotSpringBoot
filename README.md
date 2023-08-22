@@ -37,6 +37,7 @@ Ce package contient des services pour chaque entité qui gèrent les opérations
 ### `sn.isi.config`
 
 Ce package contient des configurations pour l'application, y compris la gestion des messages sources.
+Toutes les routes sont définis dans la classe abstraite EndPoint. Ce qui rend le code plus élégant dans les controllers
 
 ### `sn.isi.controller`
 
@@ -55,15 +56,124 @@ Ce package contient la classe de base pour le démarrage de l'application Spring
 - Les classes de configuration dans le package `sn.isi.config` sont annotées avec `@Configuration`.
 - Les classes de gestion des exceptions dans le package `sn.isi.exception` peuvent utiliser des annotations telles que `@ControllerAdvice` pour gérer les exceptions globalement.
 
-## Exemple de Capture d'Écran
+## Capture d'Écran TEST API sur Postman
+### API DECLARANT
+Ajout d'un déclarant
+![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/Capture1.PNG)
+Récupération d'un déclarant qui existe
+![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/Capture2.PNG)
+Récupération d'un déclarant qui n'existe pas
+![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/Capture3.PNG)
+Modification d'un déclarant
+![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/Capture4.PNG)
 
-![image](captures/capture1.png)
+### API DECLARATION
+Ajout d'une déclaration
+![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/Capture5.PNG)
+Récupération d'une déclaration qui existe
+![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/Capture6.PNG)
+Récupération d'une déclaration qui n'existe pas
+![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/Capture7.PNG)
+Suppression d'une déclaration
+![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/Capture8.PNG)
 
-Remplacez `Texte alternatif pour l'image` par une description courte de l'image (c'est utile pour l'accessibilité) et `chemin/vers/votre/image.png` par le chemin relatif depuis votre fichier README.md vers l'image. Par exemple, si votre image est dans le dossier "captures" à la racine de votre projet et s'appelle "capture.png", vous pouvez utiliser :
+### API Paiement (Particularité plusieurs paiements possible pour une déclaration)
+Code pour gerer cela sans pour autant dépasser le montant de la déclaration. Voir dans les services `sn.isi.service` le service `PaiementService.java`
+![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/Capture9.PNG)
+![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/Capture10.PNG)
+Ajout d'un paiement sans probleme avec le montant de la declaration
+![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/Capture11.PNG)
+Ajout d'un paiement pour la declaration numero 7 dont le montant est `300 000` avec un premier paiement `200 000` donc il ne reste que `100 000`. On va essayer d'ajouter un paiement de plus de `100 000` qui ne va normalement pas passer.
+![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/Capture12.PNG)
+Ce qui déclenche une erreur personnalisée
+![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/Capture13.PNG)
+![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/Capture14.PNG)
+Et là si on fait un paiement de 100 000 ou moins ça passe.
+![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/Capture16.PNG)
+Récupération d'un paiement qui n'existe pas
+![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/Capture15.PNG)
+Suppression d'un paiement
+![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/Capture17.PNG)
 
-![Capture d'écran de mon projet](captures/capture.png)
+### A propos des endpoints tous mettre sur une classe abstraite et les appeller au besoin
+```
+package sn.isi.config;
 
+public abstract class EndPoint {
+	//	DECLARANT
+	public static final String DECLARANT = "/declarant";
+	public static final String ADD_DECLARANT = "/addDeclarant";
+	public static final String GET_DECLARANT_BY_ID = "/getDeclarantById/{id}";
+	public static final String GET_DECLARANT_LIST = "/listDeclarant";
+	public static final String DELETE_DECLARANT = "/deleteDeclarant/{id}";
+	public static final String UPDATE_DECLARANT = "/updateDeclarant/{id}";
+	
+//	DECLARATION
+	public static final String DECLARATION = "/declaration";
+	public static final String ADD_DECLARATION = "/addDeclaration";
+	public static final String GET_DECLARATION_BY_ID = "/getDeclarationById/{id}";
+	public static final String GET_DECLARATION_LIST = "/listDeclaration";
+	public static final String DELETE_DECLARATION = "/deleteDeclaration/{id}";
+	public static final String UPDATE_DECLARATION = "/updateDeclaration/{id}";
+	
+//	PAIEMENT
+	public static final String PAIEMENT = "/paiement";
+	public static final String ADD_PAIEMENT = "/addPaiement";
+	public static final String GET_PAIEMENT_BY_ID = "/getPaiementById/{id}";
+	public static final String GET_PAIEMENT_LIST = "/listPaiement";
+	public static final String DELETE_PAIEMENT = "/deletePaiement/{id}";
+	public static final String UPDATE_PAIEMENT = "/updatePaiement/{id}";
+}
+```
+### Integration dans le controller DeclarantController
+```
+package sn.isi.controller;
 
+import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import sn.isi.config.EndPoint;
+import sn.isi.dto.DeclarantDto;
+import sn.isi.service.DeclarantService;
+
+import javax.validation.Valid;
+import java.util.List;
+
+@RestController
+@RequestMapping(value = EndPoint.DECLARANT)
+@AllArgsConstructor
+public class DeclarantController {
+    private DeclarantService declarantService;
+
+    @GetMapping(value = EndPoint.GET_DECLARANT_LIST)
+    public List<DeclarantDto> getDeclarant() {
+        return declarantService.getDeclarants();
+    }
+
+    @GetMapping(value = EndPoint.GET_DECLARANT_BY_ID)
+    public DeclarantDto getDeclarant(@PathVariable("id") Long id) {
+        return declarantService.getDeclarant(id);
+    }
+
+    @PostMapping(value = EndPoint.ADD_DECLARANT)
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public DeclarantDto createDeclarant(@Valid @RequestBody DeclarantDto declarantDto) {
+        return declarantService.createDeclarant(declarantDto);
+    }
+
+    @PutMapping(value = EndPoint.UPDATE_DECLARANT)
+    public DeclarantDto updateDeclarant(@PathVariable("id") Long id, @Valid @RequestBody DeclarantDto declarantDto) {
+        return declarantService.updateDeclarant(id, declarantDto);
+    }
+
+    @DeleteMapping(value = EndPoint.DELETE_DECLARANT)
+    public void deleteDeclarant(@PathVariable("id") Long id) {
+        declarantService.deleteDeclarant(id);
+    }
+}
+
+```
 Assurez-vous que votre projet est configuré correctement avec Spring Boot pour que ces annotations fonctionnent comme prévu.
 
 N'hésitez pas à explorer chaque package pour plus de détails sur la structure de l'application.
