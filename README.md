@@ -57,7 +57,7 @@ Ce package contient la classe de base pour le démarrage de l'application Spring
 
 ## Exemple de Capture d'Écran
 
-![image](src/main/resources/captures/capture1.png)
+![image](captures/capture1.png)
 
 Remplacez `Texte alternatif pour l'image` par une description courte de l'image (c'est utile pour l'accessibilité) et `chemin/vers/votre/image.png` par le chemin relatif depuis votre fichier README.md vers l'image. Par exemple, si votre image est dans le dossier "captures" à la racine de votre projet et s'appelle "capture.png", vous pouvez utiliser :
 
