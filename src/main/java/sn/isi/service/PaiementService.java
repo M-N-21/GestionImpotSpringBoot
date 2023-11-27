@@ -29,7 +29,7 @@ public class PaiementService {
     private PaiementMapper paiementMapper;
     private DeclarationMapper declarationMapper;
     MessageSource messageSource;
-
+    private static String mymessage = "paiement.notfound";
 
     @Transactional(readOnly = true)
     public List<PaiementDto>  getPaiements() {
@@ -42,7 +42,7 @@ public class PaiementService {
     public PaiementDto getPaiement(Long id) {
         return paiementMapper.toPaiementDto(iPaiementRepository.findById(id)
                 .orElseThrow(() ->
-                new EntityNotFoundException(messageSource.getMessage("paiement.notfound", new Object[]{id},
+                new EntityNotFoundException(messageSource.getMessage(mymessage, new Object[]{id},
                         Locale.getDefault()))));
     }
 
@@ -61,7 +61,7 @@ public class PaiementService {
     		}
 		}
     	System.out.println(totalpaie);
-    	DeclarationDto p = declarationMapper.toDeclarationDto(declarationRepository.findById(paiementDto.getDeclaration().getId()).orElseThrow(() -> new EntityNotFoundException(messageSource.getMessage("paiement.notfound", new Object[]{paiementDto.getDeclaration().getId()},
+    	DeclarationDto p = declarationMapper.toDeclarationDto(declarationRepository.findById(paiementDto.getDeclaration().getId()).orElseThrow(() -> new EntityNotFoundException(messageSource.getMessage(mymessage, new Object[]{paiementDto.getDeclaration().getId()},
                 Locale.getDefault()))));
     	
     	if (totalpaie < p.getMontantDeclaration()) {
@@ -71,7 +71,7 @@ public class PaiementService {
 				try {
 					throw new Exception(messageSource.getMessage("paiement.errormontantsupperieurpaiement", new Object[] {p.getMontantDeclaration()},
 					        Locale.getDefault()));
-//					throw new LogiquePaiement(messageSource.getMessage("paiement.errormontantsupperieurpaiement", new Object[] {p.getMontantDeclaration()},
+//					throw new logiquePaiement(messageSource.getMessage("paiement.errormontantsupperieurpaiement", new Object[] {p.getMontantDeclaration()},
 //					        Locale.getDefault()),HttpStatus.CONFLICT);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -96,7 +96,7 @@ public class PaiementService {
                     paiementDto.setId(id);
                     return paiementMapper.toPaiementDto(
                             iPaiementRepository.save(paiementMapper.toPaiement(paiementDto)));
-                }).orElseThrow(() -> new EntityNotFoundException(messageSource.getMessage("paiement.notfound", new Object[]{id},
+                }).orElseThrow(() -> new EntityNotFoundException(messageSource.getMessage(mymessage, new Object[]{id},
                         Locale.getDefault())));
     }
 

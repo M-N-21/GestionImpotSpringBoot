@@ -7,11 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import sn.isi.entities.Declaration;
-
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 @Data

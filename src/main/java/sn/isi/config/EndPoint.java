@@ -1,6 +1,10 @@
 package sn.isi.config;
 
 public abstract class EndPoint {
+	private EndPoint(){
+		throw new IllegalStateException("Utility class");
+	}
+	
 	//	DECLARANT
 	public static final String DECLARANT = "/declarant";
 	public static final String ADD_DECLARANT = "/addDeclarant";

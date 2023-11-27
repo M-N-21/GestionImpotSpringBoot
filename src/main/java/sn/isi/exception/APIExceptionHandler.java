@@ -35,7 +35,7 @@ public class APIExceptionHandler {
     }
     
     @ExceptionHandler(value = {LogiquePaiement.class})
-    public ResponseEntity<APIException> LogiquePaiement(LogiquePaiement e) {
+    public ResponseEntity<APIException> logiquePaiement(LogiquePaiement e) {
         APIException exception = new APIException(HttpStatus.BAD_REQUEST.getReasonPhrase(), HttpStatus.BAD_REQUEST, LocalDateTime.now());
         return new ResponseEntity<>(exception, HttpStatus.BAD_REQUEST);
     }

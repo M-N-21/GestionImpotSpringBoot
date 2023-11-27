@@ -23,6 +23,7 @@ public class DeclarationService {
 	private IDeclarationRepository iDeclarationRepository;
     private DeclarationMapper declarationMapper;
     MessageSource messageSource;
+    private static String mymessage = "declaration.notfound";
 
     public DeclarationService(IDeclarationRepository iDeclarationRepository, DeclarationMapper declarationMapper, MessageSource messageSource) {
         this.iDeclarationRepository = iDeclarationRepository;
@@ -41,7 +42,7 @@ public class DeclarationService {
     public DeclarationDto getDeclaration(Long id) {
         return declarationMapper.toDeclarationDto(iDeclarationRepository.findById(id)
                 .orElseThrow(() ->
-                new EntityNotFoundException(messageSource.getMessage("declaration.notfound", new Object[]{id},
+                new EntityNotFoundException(messageSource.getMessage(mymessage, new Object[]{id},
                         Locale.getDefault()))));
     }
 
@@ -57,7 +58,7 @@ public class DeclarationService {
                     declarationDto.setId(id);
                     return declarationMapper.toDeclarationDto(
                             iDeclarationRepository.save(declarationMapper.toDeclaration(declarationDto)));
-                }).orElseThrow(() -> new EntityNotFoundException(messageSource.getMessage("declaration.notfound", new Object[]{id},
+                }).orElseThrow(() -> new EntityNotFoundException(messageSource.getMessage(mymessage, new Object[]{id},
                         Locale.getDefault())));
     }
 

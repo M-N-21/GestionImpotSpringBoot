@@ -20,7 +20,8 @@ public class DeclarantService {
     private IDeclarantRepository iDeclarantRepository;
     private DeclarantMapper declarantMapper;
     MessageSource messageSource;
-
+    private static String mymessage = "declarant.notfound";
+    
     public DeclarantService(IDeclarantRepository iDeclarantRepository, DeclarantMapper declarantMapper, MessageSource messageSource) {
         this.iDeclarantRepository = iDeclarantRepository;
         this.declarantMapper = declarantMapper;
@@ -38,7 +39,7 @@ public class DeclarantService {
     public DeclarantDto getDeclarant(Long id) {
         return declarantMapper.toDeclarantDto(iDeclarantRepository.findById(id)
                 .orElseThrow(() ->
-                new EntityNotFoundException(messageSource.getMessage("declarant.notfound", new Object[]{id},
+                new EntityNotFoundException(messageSource.getMessage(mymessage, new Object[]{id},
                         Locale.getDefault()))));
     }
 
@@ -54,7 +55,7 @@ public class DeclarantService {
                     declarantDto.setId(id);
                     return declarantMapper.toDeclarantDto(
                             iDeclarantRepository.save(declarantMapper.toDeclarant(declarantDto)));
-                }).orElseThrow(() -> new EntityNotFoundException(messageSource.getMessage("declarant.notfound", new Object[]{id},
+                }).orElseThrow(() -> new EntityNotFoundException(messageSource.getMessage(mymessage, new Object[]{id},
                         Locale.getDefault())));
     }
 
