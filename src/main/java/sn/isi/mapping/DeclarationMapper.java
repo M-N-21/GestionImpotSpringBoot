@@ -1,6 +1,6 @@
 package sn.isi.mapping;
 
-import org.mapstruct.Mapper;
+import org.mapstruct.Mapper; 
 import sn.isi.dto.DeclarationDto;
 import sn.isi.entities.Declaration;
 

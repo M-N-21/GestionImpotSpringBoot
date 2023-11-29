@@ -1,13 +1,16 @@
 package sn.isi.exception;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor; 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import org.springframework.http.HttpStatus;
 
-@Data
+@ToString
+@Getter
+@Setter
 @AllArgsConstructor
-@NoArgsConstructor
 public class LogiquePaiement extends RuntimeException {
     private final String message;
     private final HttpStatus status;

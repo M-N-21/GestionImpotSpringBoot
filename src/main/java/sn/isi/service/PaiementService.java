@@ -2,6 +2,7 @@ package sn.isi.service;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -18,6 +19,7 @@ import sn.isi.doa.IPaiementRepository;
 import sn.isi.dto.DeclarationDto;
 import sn.isi.dto.PaiementDto;
 import sn.isi.exception.EntityNotFoundException;
+import sn.isi.exception.LogiquePaiement;
 import sn.isi.exception.RequestException;
 import sn.isi.mapping.DeclarationMapper;
 import sn.isi.mapping.PaiementMapper;
@@ -30,6 +32,7 @@ public class PaiementService {
     private DeclarationMapper declarationMapper;
     MessageSource messageSource;
     private static String mymessage = "paiement.notfound";
+    private static final Logger logger = Logger.getLogger(PaiementService.class.getName());
 
     @Transactional(readOnly = true)
     public List<PaiementDto>  getPaiements() {
@@ -53,14 +56,9 @@ public class PaiementService {
                 .collect(Collectors.toList());
     	
     	Double totalpaie = (double) 0;
-    	if (paiements != null) {
-    		for (PaiementDto p : paiements) {
-    			if (p.getDeclaration().getId() == paiementDto.getDeclaration().getId()) {
-    				totalpaie += p.getMontantPaiement();
-    			}
-    		}
-		}
-    	System.out.println(totalpaie);
+    	totalpaie = totalpaiement(paiementDto, paiements, totalpaie);
+    	String montant = totalpaie.toString();
+		logger.info(montant);
     	DeclarationDto p = declarationMapper.toDeclarationDto(declarationRepository.findById(paiementDto.getDeclaration().getId()).orElseThrow(() -> new EntityNotFoundException(messageSource.getMessage(mymessage, new Object[]{paiementDto.getDeclaration().getId()},
                 Locale.getDefault()))));
     	
@@ -69,18 +67,18 @@ public class PaiementService {
 				return paiementMapper.toPaiementDto(iPaiementRepository.save(paiementMapper.toPaiement(paiementDto)));
 			}else {
 				try {
-					throw new Exception(messageSource.getMessage("paiement.errormontantsupperieurpaiement", new Object[] {p.getMontantDeclaration()},
-					        Locale.getDefault()));
-//					throw new logiquePaiement(messageSource.getMessage("paiement.errormontantsupperieurpaiement", new Object[] {p.getMontantDeclaration()},
-//					        Locale.getDefault()),HttpStatus.CONFLICT);
+					throw new LogiquePaiement(messageSource.getMessage("paiement.errormontantsupperieurpaiement", new Object[] {p.getMontantDeclaration()},
+					        Locale.getDefault()),
+							HttpStatus.CONFLICT);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		}else {
 			try {
-				throw new Exception(messageSource.getMessage("paiement.errormontantpaiement", new Object[] {totalpaie},
-				        Locale.getDefault()));
+				throw new LogiquePaiement(messageSource.getMessage("paiement.errormontantpaiement", new Object[] {totalpaie},
+				        Locale.getDefault()),
+						HttpStatus.CONFLICT);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -88,6 +86,17 @@ public class PaiementService {
 		return paiementDto;
         
     }
+
+	private Double totalpaiement(PaiementDto paiementDto, List<PaiementDto> paiements, Double totalpaie) {
+		if (paiements != null) {
+    		for (PaiementDto p : paiements) {
+    			if (p.getDeclaration().getId().equals(paiementDto.getDeclaration().getId())) {
+    				totalpaie += p.getMontantPaiement();
+    			}
+    		}
+		}
+		return totalpaie;
+	}
 
     @Transactional
     public PaiementDto updatePaiement(Long id, PaiementDto paiementDto) {
