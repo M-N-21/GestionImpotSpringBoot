@@ -58,9 +58,9 @@ Ce package contient la classe de base pour le démarrage de l'application Spring
 
 ## Capture d'Écran de l'analyse sonarcloud
 ### Premiere analyse
-Ajout d'un déclarant
+
 ![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/sonar1.PNG)
-Récupération d'un déclarant qui existe
+
 ![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/sonar2.PNG)
 ### Après modification des suggestions
 ![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/sonar4.PNG)
