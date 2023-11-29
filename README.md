@@ -56,6 +56,15 @@ Ce package contient la classe de base pour le démarrage de l'application Spring
 - Les classes de configuration dans le package `sn.isi.config` sont annotées avec `@Configuration`.
 - Les classes de gestion des exceptions dans le package `sn.isi.exception` peuvent utiliser des annotations telles que `@ControllerAdvice` pour gérer les exceptions globalement.
 
+## Capture d'Écran de l'analyse sonarcloud
+### Premiere analyse
+Ajout d'un déclarant
+![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/sonar1.PNG)
+Récupération d'un déclarant qui existe
+![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/sonar2.PNG)
+### Après modification des suggestions
+![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/sonar4.PNG)
+
 ## Capture d'Écran TEST API sur Postman
 ### API DECLARANT
 Ajout d'un déclarant
