@@ -11,9 +11,9 @@ jobs:
     steps:
       - name: Afficher les valeurs des variables d'environnement
         run: |
-          echo "GITHUB_TOKEN: ${{ secrets.GITHUB }}"
-          echo "SONAR_TOKEN: ${{ vars.SONAR_TOKEN }}"
-          echo "secrets SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}"
+          echo "GITHUB_TOKEN: ${{ secrets.GITHUB.GITHUB }}"
+          echo "SONAR_TOKEN: ${{ vars.SONAR_TOKEN.SONAR_TOKEN }}"
+          echo "secrets SONAR_TOKEN: ${{ secrets.SONAR_TOKEN.SONAR_TOKEN }}"
       - name: Vérifier les valeurs des variables d'environnement
         run: |
 
