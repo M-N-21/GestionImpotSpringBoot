@@ -18,7 +18,7 @@
 ### Pour pousser plus loin nous allons choisir une analyse avec github action
 ![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/i9.PNG)
 ### Il nous demande de mettre à jour le `pom.xml` en ajoutant ces `properties` et de creer ou de mettre à jour le `build.yml` qui se trouve dans les `workflows`
-![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/i10.PNG)
+![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/sonarcloud/src/main/resources/captures/i10.PNG)
 
 ### Premiere analyse
 
