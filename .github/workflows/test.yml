@@ -1,0 +1,8 @@
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Afficher les valeurs des tokens
+        run: |
+          echo "GITHUB_TOKEN: $GITHUB_TOKEN"
+          echo "SONAR_TOKEN: $SONAR_TOKEN"
