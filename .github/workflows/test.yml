@@ -8,6 +8,7 @@ on:
 jobs:
   top-secret:
     runs-on: ubuntu-latest
+    environment: dev
     env:
       MY_APP_ID: ${{ secrets.MYGITHUB_TOKEN }}
 
