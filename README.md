@@ -13,7 +13,7 @@
 ![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/i6.PNG)
 ### A ce niveau on choisit entre `previous version` pour les projets qui ont regulierement de nouvelles versions et `number of days` pour les projets organisés en sprint où on doit livrer chaque x jours
 ![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/i7.PNG)
-### Pour notre cas on prend la premiere option et cree le projet et c'est suffisant de 
+### Pour notre cas on prend la premiere option et cree le projet et c'est suffisant. Dans ce cas sonarcloud fais une premiere analyse et vous fais des retours
 ![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/i8.PNG)
 ### Pour pousser plus loin nous allons choisir une analyse avec github action
 ![image1jkhkghjkhjkhk](https://github.com/M-N-21/GestionImpotSpringBoot/blob/master/src/main/resources/captures/i9.PNG)
