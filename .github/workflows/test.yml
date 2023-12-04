@@ -1,7 +1,9 @@
 name: Secrets and Environment Variables
 
 on:
-  workflow_dispatch
+  push:
+    branches:
+      - sonarcloud
 
 jobs:
   top-secret:
