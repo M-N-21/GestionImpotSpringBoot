@@ -16,6 +16,8 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
+		<sonar.organization>m-n-21</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 	<dependencies>
 		<!--  Pour les mappers  -->
