@@ -9,6 +9,7 @@ jobs:
   build:
     name: Build and analyze
     runs-on: ubuntu-latest
+    environment: dev
     steps:
       - uses: actions/checkout@v3
         with:
@@ -31,7 +32,6 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
       - name: Build and analyze
-        environment: dev
         env:
           GITHUB_TOKEN: ${{ secrets.MYGITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
