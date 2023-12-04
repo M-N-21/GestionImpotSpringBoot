@@ -16,13 +16,13 @@ jobs:
 
       - name: Vérifier les valeurs des variables d'environnement
         run: |
-          if [ -z "$GITHUB_TOKEN" ]; then
-            echo "Erreur: La variable d'environnement GITHUB_TOKEN n'est pas configurée."
-            exit 1
-          fi
 
           if [ -z "$SONAR_TOKEN" ]; then
             echo "Erreur: La variable d'environnement SONAR_TOKEN n'est pas configurée."
+            exit 1
+          fi
+          if [ -z "$GITHUB_TOKEN" ]; then
+            echo "Erreur: La variable d'environnement GITHUB_TOKEN n'est pas configurée."
             exit 1
           fi
 
