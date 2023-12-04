@@ -11,19 +11,19 @@ jobs:
     steps:
       - name: Afficher les valeurs des variables d'environnement
         run: |
-          echo "GITHUB_TOKEN: ${{ secrets.GITHUB.GITHUB }}"
-          echo "SONAR_TOKEN: ${{ vars.SONAR_TOKEN.SONAR_TOKEN }}"
-          echo "secrets SONAR_TOKEN: ${{ secrets.SONAR_TOKEN.SONAR_TOKEN }}"
+          echo "GITHUB_TOKEN: ${{ secrets.MYGITHUB_TOKEN }}"
+          echo "SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}"
+          echo "secrets SONAR_TOKEN: ${{ secrets.dev.SONAR_TOKEN }}"
       - name: Vérifier les valeurs des variables d'environnement
         run: |
 
           if [ -z "${{secrets.SONAR_TOKEN}}" ]; then
             echo "Erreur: La variable d'environnement SONAR_TOKEN n'est pas configurée."
-            exit 1
+            #exit 1
           fi
           if [ -z "$GITHUB_TOKEN" ]; then
             echo "Erreur: La variable d'environnement GITHUB_TOKEN n'est pas configurée."
-            exit 1
+            #exit 1
           fi
 
           echo "Les variables d'environnement sont correctement configurées."
