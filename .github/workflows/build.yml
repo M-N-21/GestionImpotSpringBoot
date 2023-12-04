@@ -38,9 +38,9 @@ jobs:
       - name: Configure MySQL
         run: |
           sudo mysql -e "CREATE DATABASE gestionimpot-db;"
-          #sudo mysql -e "CREATE USER 'gestionimpot_user'@'localhost' IDENTIFIED BY '';"
-          #sudo mysql -e "GRANT ALL PRIVILEGES ON gestionimpot_db.* TO 'gestionimpot_user'@'localhost';"
-          #sudo mysql -e "FLUSH PRIVILEGES;"
+          sudo mysql -e "CREATE USER 'gestionimpot_user'@'localhost' IDENTIFIED BY '';"
+          sudo mysql -e "GRANT ALL PRIVILEGES ON gestionimpot_db.* TO 'gestionimpot_user'@'localhost';"
+          sudo mysql -e "FLUSH PRIVILEGES;"
       - name: Build and run tests
         run: mvn -B verify -Dspring.config.location=classpath:application.yml
         env:
