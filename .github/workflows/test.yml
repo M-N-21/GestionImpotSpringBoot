@@ -1,5 +1,9 @@
 jobs:
   build:
+    on:
+      push:
+        branches:
+          - sonnar
     runs-on: ubuntu-latest
     steps:
       - name: Afficher les valeurs des tokens
