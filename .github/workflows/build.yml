@@ -40,7 +40,7 @@ jobs:
         run: |
           sudo service mysql start
           sudo mysql -e "CREATE DATABASE gestionimpot_db;"
-          sudo mysql -e "CREATE USER 'gestionimpot_user'@'localhost' IDENTIFIED BY '' WITH MAX_USER_CONNECTIONS 0; FLUSH PRIVILEGES;"
+          #sudo mysql -e "CREATE USER 'gestionimpot_user'@'localhost' IDENTIFIED BY '' WITH MAX_USER_CONNECTIONS 0; FLUSH PRIVILEGES;"
 
       - name: Build and run tests
         run: mvn -B verify -Dspring.config.location=classpath:application-test.yml
