@@ -1,4 +1,4 @@
-name: Vérification des Variables d'Environnement
+name: test
 
 on:
   push:
