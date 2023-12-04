@@ -1,29 +1,26 @@
-name: test
+name: Secrets and Environment Variables
 
 on:
-  push:
-    branches:
-      - sonarcloud
+  sonarcloud
 
 jobs:
-  check-environment:
+  top-secret:
     runs-on: ubuntu-latest
+    env:
+      MY_APP_ID: ${{ secrets.MYGITHUB_TOKEN }}
+
     steps:
-      - name: Afficher les valeurs des variables d'environnement
-        run: |
-          echo "GITHUB_TOKEN: ${{ secrets.MYGITHUB_TOKEN }}"
-          echo "SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}"
-          echo "secrets SONAR_TOKEN: ${{ secrets.dev.SONAR_TOKEN }}"
-      - name: Vérifier les valeurs des variables d'environnement
-        run: |
+      - name: Read a variable
+        run: echo "My github token value is ${{ secrets.MYGITHUB_TOKEN }}"
 
-          if [ -z "${{secrets.SONAR_TOKEN}}" ]; then
-            echo "Erreur: La variable d'environnement SONAR_TOKEN n'est pas configurée."
-            #exit 1
-          fi
-          if [ -z "$GITHUB_TOKEN" ]; then
-            echo "Erreur: La variable d'environnement GITHUB_TOKEN n'est pas configurée."
-            #exit 1
-          fi
-
-          echo "Les variables d'environnement sont correctement configurées."
+      - name: Tell me a secret!
+        run: echo "My existing secret is ${{ secrets.SONAR_TOKEN }}"
+      
+      - name: Unset secret
+        run: echo "My unknown secret is ${{ secrets.DOES_NOT_EXIST }}"
+      
+      - name: Github stuff
+        run: echo "My Github repo is called ${{ github.repository }}"
+      
+      - name: Read an env variable
+        run: echo "My APP_ID value is ${{ env.APP_ID }} (also accessible as $MY_APP_ID)"
